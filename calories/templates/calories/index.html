@@ -23,7 +23,7 @@
                 </select><br>
             
                 <label for="">Food Name</label>
-                <select name="" id="food_name" required>
+                <select name="" id="food_name" onchange="getSelectedValue(this)" required>
                     <optgroup label="Select">
                         {% for veg in vegetables %}
                             <option value="">{{ veg.veg_name}}</option>
@@ -32,7 +32,7 @@
                 </select>
 
 
-                <label for="">Quantity</label><input type="number"><br>
+                <label for="">Quantity</label><input type="number" placeholder="gm" id="quantity_input"><br>
                 <button class="btn btn-sm btn-primary add" type="submit">Submit</button>
                 <button class="btn btn-sm btn-secondary" type="reset">Reset</button>
 
@@ -43,35 +43,57 @@
                 <table class="table table-sm table-bordered">
                     <thead>
                       <tr>
-                        <th scope="col">Serial</th>
+                        <!-- <th scope="col">Serial</th> -->
                         <th scope="col">Food Name</th>
-                        <th scope="col">calories</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Calories</th>
                         
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
+                    <tbody id="table_body">
+                      {% for veg in vegetables %}
+                        {{veg.veg_cal}}
+                      {% endfor %}
+                      <!-- <tr>
                         <td>carrot</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        
-                      </tr>
+                        <td>10</td>
+                        <td>20</td>           
+                      </tr> -->
+
                     </tbody>
                   </table>
             </div>
 
-
+            
+            <div id="chart">
+              <table class="table table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">Serial</th> -->
+                    <th scope="col">Food Name</th>
+                    <th scope="col">Calories</th>
+                    
+                  </tr>
+                </thead>
+                <tbody id="table_chart">
+                  {% for veg in vegetables %}
+                    <tr>
+                      <td>{{veg.veg_name}}</td>
+                      <td>{{veg.veg_cal}}</td>      
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
 
 
       </div>
 
       <div class="col-4">
 
-        <ul class="list-group">
+        <ul class="list-group" id="calorie_list">
             {% for veg in vegetables %}
-                <li class="list-group-item">{{ veg.veg_name }} {{ veg.veg_cal }}</li>
+                <li class="list-group-item">{{ veg.veg_cal }}</li>
             {% endfor %}
                 <!-- <li class="list-group-item">A second item</li>
                 <li class="list-group-item">A third item</li>
