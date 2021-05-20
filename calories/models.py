@@ -6,5 +6,5 @@ class Vegetable(models.Model):
     veg_cal = models.FloatField()
 
     def __str__(self):
-        return self.veg_name, self.veg_cal
+        return self.veg_name
 
