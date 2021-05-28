@@ -1,34 +1,215 @@
+{% extends 'calories/base.html' %}
+
+{% block content %}
+
 <div class="row">
-    <div class="col-8">
-      <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Vegetable Name</th>
-              <th scope="col">calories</th>
+      <div class="col-8 mt-4 pt-4 form_bg">
+
+     
+          <fieldset class="row mb-3">
+            <label class="col-form-label col-sm-2 pt-0 "  style="display:block; margin-right: -24px;">Gender</label>
+            <div class="col-sm-10" >
+              <div class="form-check" id="genderSelect">
+                <label class="form-check-label" for="gridRadios1"><input type="radio" name="gender" value="male">Male</label>
+                <label class="form-check-label" for="gridRadios1"><input type="radio" name="gender" value="female">Female</label>
+                  
+              </div>
+
+            </div>
+          </fieldset>
+          <div class="row mb-3">
+            <fieldset class="row mb-3">
+              <label class="col-form-label col-sm-2 pt-0 "  style="display:block; ">Activity level</label>
+              <div class="col-sm-10">
+                  <div id="activity">
+                    
+                    <label class="form-check-label" for="gridRadios1"> <input type="radio" name="activity_level" value="inactive">Inactive</label>
+                    <label class="form-check-label" for="gridRadios1"> <input type="radio" name="activity_level" value="moderate">Moderately Active</label>
+                    <label class="form-check-label" for="gridRadios1"> <input type="radio" name="activity_level" value="active">Active</label>
               
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>carrot</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-          </tbody>
-        </table>
+                </div>
+            </div>
+            </fieldset>
 
-    </div>
-    <div class="col-4">
+            
+          <div class="age">
+            
+            <label class="col-form-label col-sm-2 pt-0">Age</label>
+            <select name="" id="age" onchange="getSelectedValue_age(this)">
+              <option value="">Select</option>
+              <option value="1">16-18</option>
+              <option value="2">19-25</option>
+              <option value="4">26-30</option>
+              <option value="1">31-35</option>
 
-      <ul class="list-group">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
-        </ul>
+            </select>
+          </div>
 
-    </div>
+
+          
+          <div class="food_list">
+            
+            <label class="col-form-label col-sm-2 pt-0" >Food name</label>
+            
+            <select name="" id="food_name" onchange="getSelectedValue(this)" required>
+                <optgroup label="Vegetables">
+                  
+                    {% for veg in vegetables %}
+                        <option value="">{{ veg.veg_name}}</option>
+                    {% endfor %}
+
+                </optgroup>
+                <optgroup label="Fishes">
+                  
+                  {% for fish in fishes %}
+                   <option value="">{{fish.fish_name}}</option>
+                  {% endfor %}
+                </optgroup>
+
+                <optgroup label="Dairy">
+                  
+                  {% for dairy in dairy %}
+                   <option value="">{{dairy.dairy_name}}</option>
+                  {% endfor %}
+                </optgroup>
+
+                <optgroup label="Meats">
+                  
+                  {% for meat in meats %}
+                   <option value="">{{meat.meat_name}}</option>
+                  {% endfor %}
+                </optgroup>
+
+                <optgroup label="Fruits">
+                  
+                  {% for fruit in fruits %}
+                   <option value="">{{fruit.fruit_name}}</option>
+                  {% endfor %}
+                </optgroup>
+
+                <optgroup label="Grains">
+                  
+                  {% for grain in grains %}
+                   <option value="">{{grain.grain_name}}</option>
+                  {% endfor %}
+                </optgroup>
+            </select>
+            
+        </div>
+        <label for="" class="col-form-label col-sm-2  quantity_label">Quantity</label><input type="number" placeholder="gm" id="quantity_input"><br>
+          
+        <div class="button_submit_calculate">
+              
+          <button class="btn btn-sm btn-primary add m-2" type="submit">Submit</button>
+          <button class="btn btn-sm btn-secondary calculate m-2" type="submit">Calculate</button>
+          <button class="btn btn-success btn-sm" id="toggleChart">Show Chart</button>
+        </div>
+
+
+      </div>
+            <div class="showData"  id="input_table" style="display: none;">
+                <table class="table table-sm table-bordered">
+                    <thead>
+                      <tr>
+                        <!-- <th scope="col">Serial</th> -->
+                        <th scope="col">Food Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Calories</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="table_body_input">
+                      <!-- <tr>
+                        <td>carrot</td>
+                        <td>10</td>
+                        <td>20</td>           
+                      </tr> -->
+
+                    </tbody>
+                  </table>
+            </div>
+
+            
+          
+            <div id="chart" style="display: none; background-color: whitesmoke;">
+              <table class="table table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">Serial</th> -->
+                    <!-- <th>Category</th> -->
+                    <th scope="col">Food Name</th>
+                    <th scope="col">Calories</th>
+                    
+                  </tr>
+                </thead>
+                <tbody id="table_chart">
+                  <!-- <tr>
+                    <td rowspan="9">Vegetable</td>
+                  </tr> -->
+                  {% for veg in vegetables %}
+                    <tr>
+                
+                      <td>{{veg.veg_name}}</td>
+                      <td>{{veg.veg_cal}}</td>      
+                    </tr>
+                  {% endfor %}
+
+                  {% for fruit in fruits %}
+                      <tr>
+                        <td>{{ fruit.fruit_name}}</td>
+                        <td>{{ fruit.fruit_cal}}</td>
+                      </tr>
+                  {% endfor %}
+
+
+                  {% for meat in meats %}
+                      <tr>
+                        <td>{{ meat.meat_name}}</td>
+                        <td>{{ meat.meat_cal}}</td>
+                      </tr>
+                  {% endfor %}
+
+                  {% for grain in grains %}
+                    <tr>
+                      <td>{{ grain.grain_name}}</td>
+                      <td>{{ grain.grain_cal}}</td>
+                    </tr>
+                  {% endfor %}
+
+
+                  {% for fish in fishes %}
+                    <tr>
+                      <td>{{ fish.fish_name}}</td>
+                      <td>{{ fish.fish_cal}}</td>
+                    </tr>
+                 {% endfor %}
+
+                 {% for dairy in dairy %}
+                  <tr>
+                    <td>{{ dairy.dairy_name}}</td>
+                    <td>{{ dairy.dairy_cal}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+
+      </div>
+
+      <div class="col-4" id="totalResultView">
+          <div class="result">
+            <h4 class="text-center" style="color: rgb(70, 67, 66); font-weight: 800;">Daily Calories</h4>
+            <hr>
+            <p> <strong class="strongResult">Calories consumed today: </strong><span id="total_calorie_consumed"></span></p>
+            <hr>
+            <p><strong class="strongResult">Target: </strong><span id="target"></span></p>
+            <p><strong class="strongResult">Remaining: </strong><span id="remain"></span></p>
+
+          </div>
+
+      </div>
   </div>
+
+
+{% endblock %}

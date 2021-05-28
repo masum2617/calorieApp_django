@@ -1,0 +1,21 @@
+{% extends 'calories/base.html' %}
+{% load crispy_forms_tags %}
+{% block login %}
+
+<div class="loginBg">
+  <h2 class="text-center" style="color: rgb(240, 224, 224);">Count Your Daily Consumed Calories!</h2>
+  <div class="mt-xl-5 p-5 loginformClass">
+  <form method="POST" action="{% url 'login' %}" id="loginform">
+    {% csrf_token %}
+      <div class="row mb-3 " >
+        {{form|crispy}}
+      </div>
+      
+
+      <button type="submit" class="btn btn-primary">Sign in</button>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}
