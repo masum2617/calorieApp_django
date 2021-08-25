@@ -1,5 +1,5 @@
 {% extends 'calories/base.html' %}
-
+{% block title %}Calorie Counter{% endblock %}
 {% block content %}
 
 <div class="row">
@@ -10,8 +10,8 @@
             <label class="col-form-label col-sm-2 pt-0 "  style="display:block; margin-right: -24px;">Gender</label>
             <div class="col-sm-10" >
               <div class="form-check" id="genderSelect">
-                <label class="form-check-label" for="gridRadios1"><input type="radio" name="gender" value="male">Male</label>
-                <label class="form-check-label" for="gridRadios1"><input type="radio" name="gender" value="female">Female</label>
+                <label class="form-check-label"  style="display:inline;"><input type="radio" name="gender" value="male">Male</label>
+                <label class="form-check-label"  style="display:inline;"><input type="radio" name="gender" value="female">Female</label>
                   
               </div>
 
@@ -19,13 +19,13 @@
           </fieldset>
           <div class="row mb-3">
             <fieldset class="row mb-3">
-              <label class="col-form-label col-sm-2 pt-0 "  style="display:block; ">Activity level</label>
+              <label class="col-form-label col-sm-2 pt-0 "  style="display:inline; ">Activity level</label>
               <div class="col-sm-10">
                   <div id="activity">
                     
-                    <label class="form-check-label" for="gridRadios1"> <input type="radio" name="activity_level" value="inactive">Inactive</label>
-                    <label class="form-check-label" for="gridRadios1"> <input type="radio" name="activity_level" value="moderate">Moderately Active</label>
-                    <label class="form-check-label" for="gridRadios1"> <input type="radio" name="activity_level" value="active">Active</label>
+                    <label class="form-check-label"  style="display:inline;" > <input type="radio" name="activity_level" value="inactive">Inactive</label>
+                    <label class="form-check-label"  style="display:inline;"> <input type="radio" name="activity_level" value="moderate">Moderately Active</label>
+                    <label class="form-check-label"  style="display:inline;"> <input type="radio" name="activity_level" value="active">Active</label>
               
                 </div>
             </div>
@@ -34,7 +34,7 @@
             
           <div class="age">
             
-            <label class="col-form-label col-sm-2 pt-0">Age</label>
+            <label class="col-form-label col-sm-2 pt-0" style="display: inline; margin-right: 50px;">Age</label>
             <select name="" id="age" onchange="getSelectedValue_age(this)">
               <option value="">Select</option>
               <option value="1">16-18</option>
@@ -49,7 +49,7 @@
           
           <div class="food_list">
             
-            <label class="col-form-label col-sm-2 pt-0" >Food name</label>
+            <label class="col-form-label col-sm-2 pt-0" style="display: inline;" >Food name</label>
             
             <select name="" id="food_name" onchange="getSelectedValue(this)" required>
                 <optgroup label="Vegetables">
@@ -96,13 +96,13 @@
             </select>
             
         </div>
-        <label for="" class="col-form-label col-sm-2  quantity_label">Quantity</label><input type="number" placeholder="gm" id="quantity_input"><br>
+        <label for="" class="col-form-label col-sm-2  quantity_label" style="margin-right: -40px;">Quantity</label><input type="number" placeholder="gm" id="quantity_input"><br><small style="margin-left: 100px; font-size: x-small;">*Calculated with per 100gm Value</small>
           
         <div class="button_submit_calculate">
               
           <button class="btn btn-sm btn-primary add m-2" type="submit">Submit</button>
           <button class="btn btn-sm btn-secondary calculate m-2" type="submit">Calculate</button>
-          <button class="btn btn-success btn-sm" id="toggleChart">Show Chart</button>
+          <button class="btn btn-success btn-sm" id="toggleChart" v-on:click="toggle">Show Chart</button>
         </div>
 
 
@@ -113,7 +113,7 @@
                       <tr>
                         <!-- <th scope="col">Serial</th> -->
                         <th scope="col">Food Name</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Quantity(gm)</th>
                         <th scope="col">Calories</th>
                         
                       </tr>

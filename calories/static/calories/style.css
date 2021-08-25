@@ -32,7 +32,7 @@ body {
 .nav a:hover{
     border-radius: 5px;
     background-color: rgb(63, 65, 64);
-    color: floralwhite;
+    color: rgb(224,174,73);
 }
 
 .nav a {
@@ -76,7 +76,7 @@ select {
 }
 #chart {
     padding-top: 20px;
-    /* display: none; */
+    
 }
 
 .result {
@@ -174,7 +174,7 @@ input[type=number] {
 
 
 .loginformClass {
-    background-color: rgba(97, 100, 100, 0.555); 
+    /* background-color: rgba(97, 100, 100, 0.555);  */
     width: 450px;
     margin-left:35%;
     border-radius: 4px;
@@ -200,3 +200,85 @@ input[type=number] {
     padding-top: 40px;
 }
 
+/* for form style */
+
+form {
+    width: 400px;
+    /* height: 650px; */
+    margin: 10px auto;
+    padding: 10px 30px;
+    background: #cbd0d1;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    margin: 0 0 30px 0;
+    text-align: center;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"]
+  
+ {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #e8eeef;
+    color: #50565a;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
+  }
+  
+  
+  .logSignBtn {
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    background-color: #4bc970;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+    
+  }
+  
+  fieldset {
+    margin-bottom: 30px;
+    border: none;
+  }
+  
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(78, 75, 75);
+  }
+  
+  label.light {
+    font-weight: 300;
+    display: inline;
+  }
+  
+  .number {
+    background-color: #5fcf80;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 100%;
+  }

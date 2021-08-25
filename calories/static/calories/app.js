@@ -14,9 +14,6 @@ var selectedValue_foodName;
 var selectedValue_category;
 var selectedValue_age;
 
-// const femaleCalorieNeed = 2000;
-// const maleCalorieNeed = 2500;
-
 function getSelectedValue() {
     
     selectedValue_foodName = food_name.options[food_name.selectedIndex].text;
@@ -41,7 +38,7 @@ function calculateCalorie(givenQuantity, calorieFromChart){
     //console.log(r);
     return r;   
   } else {
-    //var r = '-';
+    var r = '-';
     return calorieFromChart;
   }
 
@@ -63,7 +60,9 @@ addTableButton.addEventListener('click', ()=>{
     const table_data_length = chartTable.getElementsByTagName('td').length;
 
     table_data_food.innerText = food_name.options[food_name.selectedIndex].text;
+    console.log('quantity valu: ', quantity_input.value)
 
+    
     table_data_Quantity.innerHTML = quantity_input.value.toString();
   
     input_table.style.display = 'block';
@@ -74,8 +73,13 @@ addTableButton.addEventListener('click', ()=>{
         if ( chartTable.getElementsByTagName('td')[i].innerHTML == selectedValue_foodName){
            // console.log(Number(chartTable.getElementsByTagName('td')[i+1].innerHTML));
            chart_table_calorie = Number(chartTable.getElementsByTagName('td')[i+1].innerHTML);
-           table_data_calorie.innerHTML = calculateCalorie(Number(quantity_input.value), chart_table_calorie).toFixed(2);
 
+           if (table_data_Quantity.innerHTML == ""){
+             table_data_Quantity.innerHTML = '<small>100 (default)</small>';
+           } 
+           
+          table_data_calorie.innerHTML = calculateCalorie(Number(quantity_input.value), chart_table_calorie).toFixed(2);
+           
            table_row.append(table_data_food);
            table_row.append(table_data_Quantity);
            table_row.append(table_data_calorie);
@@ -86,6 +90,8 @@ addTableButton.addEventListener('click', ()=>{
     }
 
 });
+
+
 
 toggleChart.addEventListener('click', ()=>{
   if (chartDiv.style.display == 'none'){
@@ -184,7 +190,7 @@ calculateBtn.addEventListener('click', ()=>{
   }
 
   //moderate Male
-  else if(selectedGender == 'male' && selectedActivity == 'inactive') {
+  else if(selectedGender == 'male' && selectedActivity == 'moderate') {
     
     if (selectedValue_age == "1" || selectedValue_age == "2"){
       const maleCalorieNeed = 2800;

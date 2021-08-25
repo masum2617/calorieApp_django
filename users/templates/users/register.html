@@ -1,13 +1,14 @@
 {% extends 'calories/base.html' %}
+{% block title %}Register{% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
 
 <div class="registerForm mt-4">
-    <form action="" method="POST">
+    <form action="" method="POST" style="height: 650px;">
         {% csrf_token %}
         {{form|crispy}}
 
-        <button class="btn btn-outline-success">Sign up</button>
+        <button class="btn btn-outline-success logSignBtn">Sign up</button>
     </form>
 </div>    
 
