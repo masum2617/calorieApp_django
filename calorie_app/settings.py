@@ -130,7 +130,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'calorie_app/static')
+    os.path.join(BASE_DIR, 'calories/static')
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
